@@ -121,6 +121,7 @@
             padding: 2rem;
             border-radius: 15px;
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
         
         .project-card:hover {
@@ -131,6 +132,19 @@
         .project-card h3 {
             color: #667eea;
             margin-bottom: 1rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .project-link:hover {
+            color: #764ba2;
         }
         
         .skills {
@@ -202,8 +216,8 @@
 
     <section id="home" class="hero">
         <div class="container">
-            <h1>Your Name</h1>
-            <p>Web Developer | Designer | Creator</p>
+            <h1>Sergio Diaz</h1>
+            <p>Computer Engineering Student | Prev @ KIOXIA America, Inc.</p>
             <a href="#projects" class="btn">View My Work</a>
         </div>
     </section>
@@ -215,11 +229,10 @@
                 <p>I'm a passionate developer focused on creating beautiful, functional web experiences. With expertise in modern web technologies, I bring ideas to life through clean code and creative design.</p>
                 
                 <div class="skills">
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">UI/UX Design</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Go Language</span>
+                    <span class="skill-tag">Firmware Testing</span>
+                    <span class="skill-tag">Server Configuration</span>
                 </div>
             </div>
         </div>
@@ -234,14 +247,17 @@
                         <h3>Coobak</h3>
                         <p>coobak is a lightweight, versioned backup tool inspired by Venti and Elephant File System. 
                             It splits files into deduplicated, content-addressable chunks and stores them locally along with a manifest of historical versions — making it easy to restore any previous state of your files.</p>
+                        <a href="https://github.com/sdiazii/coobak" target="_blank" class="project-link">View on GitHub →</a>
                     </div>
                     <div class="project-card">
                         <h3>VidAT</h3>
                         <p>VidAT is an in development image recognition system that uses a combination of computer vision and machine learning to identify and classify injuries in live camera feed.</p>
+                        <a href="https://github.com/sdiazii/VidAT" target="_blank" class="project-link">View on GitHub →</a>
                     </div>
                     <div class="project-card">
                         <h3>Fund Facts</h3>
                         <p>A hackathon project that aimed to classify so-called "non-profits" into relevant categories and provide insights on their financial health.</p>
+                        <a href="https://github.com/sdiazii/fund-facts" target="_blank" class="project-link">View on GitHub →</a>
                     </div>
                 </div>
             </div>
