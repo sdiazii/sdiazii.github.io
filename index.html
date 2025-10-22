@@ -11,15 +11,40 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --bg-gradient-1: #667eea;
+            --bg-gradient-2: #764ba2;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --project-card-bg-1: #f8f9ff;
+            --project-card-bg-2: #f0f2ff;
+            --skill-shadow: rgba(102, 126, 234, 0.2);
+        }
+        
+        [data-theme="dark"] {
+            --bg-gradient-1: #1a1a2e;
+            --bg-gradient-2: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --card-bg: rgba(30, 30, 45, 0.95);
+            --nav-bg: rgba(30, 30, 45, 0.95);
+            --project-card-bg-1: #1e1e30;
+            --project-card-bg-2: #252540;
+            --skill-shadow: rgba(102, 126, 234, 0.4);
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%);
             background-attachment: fixed;
             min-height: 100vh;
             opacity: 0;
             animation: pageLoad 0.6s ease forwards;
+            transition: background 0.5s ease, color 0.3s ease;
         }
         
         /* Scroll Progress Bar */
@@ -35,20 +60,88 @@
             transition: transform 0.1s ease;
         }
         
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 80px;
+            right: 32px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .theme-toggle-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .theme-toggle:hover .theme-toggle-icon {
+            transform: rotate(20deg);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s, box-shadow 0.3s;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+            transform: translateY(-3px);
+        }
+        
         nav {   
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(10px);
             padding: 16px 32px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             z-index: 1000;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
         
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
+            background: var(--nav-bg);
             box-shadow: 0 2px 30px rgba(0,0,0,0.15);
         }
         
@@ -61,7 +154,7 @@
         
         nav a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 15px;
             letter-spacing: 0.5px;
@@ -112,16 +205,6 @@
             text-align: center;
             color: white;
             overflow: hidden;
-        }
-        
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            z-index: -1;
         }
         
         .hero h1 {
@@ -187,12 +270,13 @@
         }
         
         .content-section {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 48px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
         }
         
         h2 {
@@ -214,14 +298,15 @@
         }
         
         .project-card {
-            background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+            background: linear-gradient(135deg, var(--project-card-bg-1) 0%, var(--project-card-bg-2) 100%);
             padding: 32px;
             border-radius: 16px;
-            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            transform-style: preserve-3d;
         }
         
         .project-card::before {
@@ -234,11 +319,6 @@
             background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
         }
         
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(102, 126, 234, 0.25);
-        }
-        
         .project-card h3 {
             color: #667eea;
             margin-bottom: 16px;
@@ -249,6 +329,8 @@
         .project-card p {
             line-height: 1.7;
             margin-bottom: 16px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
         }
         
         .project-link {
@@ -290,7 +372,7 @@
             letter-spacing: 0.5px;
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: default;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 12px var(--skill-shadow);
         }
         
         .skill-tag:hover {
@@ -377,11 +459,32 @@
             section {
                 padding: 64px 0;
             }
+            
+            .theme-toggle {
+                top: 70px;
+                right: 16px;
+            }
+            
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 45px;
+                height: 45px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="scroll-progress"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-toggle-icon">🌙</span>
+        <span style="font-size: 14px; font-weight: 600; color: var(--text-primary);">Dark</span>
+    </button>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
     
     <nav>
         <ul>
@@ -393,18 +496,19 @@
     </nav>
 
     <section id="home" class="hero">
-            <div class="container">
-                <h1>Sergio Diaz</h1>
-                <p>Computer Engineering Student | Prev @ KIOXIA America, Inc.</p>
-                <a href="#projects" class="btn">View My Work</a>
-            </div>
+        <div class="container">
+            <h1>Sergio Diaz</h1>
+            <p>Computer Engineering Student | Prev @ KIOXIA America, Inc.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
     </section>
 
     <section id="about">
         <div class="container">
             <div class="content-section fade-in">
                 <h2>About Me</h2>
-                <p>I'm a passionate developer focused on creating beautiful, functional web experiences. With expertise in modern web technologies, I bring ideas to life through clean code and creative design.</p>
+                <p>Passionate about software, firmware, and reliability engineering. Experienced in testing and automation for storage solutions and 
+                    developing efficient, dependable systems through clean, maintainable code.</p>
                 
                 <div class="skills">
                     <span class="skill-tag">C++</span>
@@ -457,13 +561,133 @@
     </section>
 
     <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const themeIcon = document.querySelector('.theme-toggle-icon');
+        const themeText = themeToggle.querySelector('span:last-child');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeUI(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeUI(newTheme);
+        });
+        
+        function updateThemeUI(theme) {
+            if (theme === 'dark') {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+            }
+        }
+        
+        // Back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 3D Tilt effect on project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        projectCards.forEach(card => {
+            let isHovering = false;
+            let currentX = 0;
+            let currentY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            
+            card.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+            
+            card.addEventListener('mousemove', (e) => {
+                if (!isHovering) return;
+                
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Normalize to -1 to 1 range and clamp values
+                const normalizedX = Math.max(-1, Math.min(1, (x - centerX) / centerX));
+                const normalizedY = Math.max(-1, Math.min(1, (y - centerY) / centerY));
+                
+                // Reduced rotation intensity for smoother effect
+                targetX = normalizedY * 8;
+                targetY = -normalizedX * 8;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                isHovering = false;
+                targetX = 0;
+                targetY = 0;
+            });
+            
+            // Smooth animation loop using requestAnimationFrame
+            function animateTilt() {
+                if (isHovering || Math.abs(currentX - targetX) > 0.1 || Math.abs(currentY - targetY) > 0.1) {
+                    // Ease towards target values
+                    currentX += (targetX - currentX) * 0.15;
+                    currentY += (targetY - currentY) * 0.15;
+                    
+                    const elevation = isHovering ? -8 : 0;
+                    const shadowIntensity = isHovering ? 0.3 : 0.1;
+                    const shadowBlur = isHovering ? 50 : 12;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${currentX}deg) rotateY(${currentY}deg) translateY(${elevation}px)`;
+                    card.style.boxShadow = `0 ${Math.abs(elevation) + 4}px ${shadowBlur}px rgba(102, 126, 234, ${shadowIntensity})`;
+                }
+                
+                requestAnimationFrame(animateTilt);
+            }
+            
+            animateTilt();
+        });
+        
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Smooth page transition
+                document.body.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    setTimeout(() => {
+                        document.body.style.opacity = '1';
+                    }, 300);
+                }, 150);
             });
         });
         
@@ -483,15 +707,6 @@
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
-            }
-        });
-        
-        // Parallax effect for hero background
-        const heroBg = document.querySelector('.hero-bg');
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            if (heroBg) {
-                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
         
