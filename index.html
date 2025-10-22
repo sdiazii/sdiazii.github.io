@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sergio Diaz - Portfolio</title>
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/jpeg" href="icon.jpg">
     <style>
         * {
             margin: 0;
@@ -48,7 +48,6 @@
             transition: background 0.5s ease, color 0.3s ease;
         }
         
-        /* Scroll Progress Bar */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -61,7 +60,6 @@
             transition: transform 0.1s ease;
         }
         
-        /* Dark Mode Toggle */
         .theme-toggle {
             position: fixed;
             top: 80px;
@@ -94,7 +92,6 @@
             transform: rotate(20deg);
         }
         
-        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 32px;
@@ -419,6 +416,83 @@
             transform: translateY(0);
         }
         
+        .timeline-compact {
+            margin-top: 48px;
+            position: relative;
+        }
+        
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        
+        .timeline-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .timeline-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .timeline-item-compact {
+            background: linear-gradient(135deg, var(--project-card-bg-1) 0%, var(--project-card-bg-2) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+        
+        .timeline-item-compact:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.2);
+        }
+        
+        .timeline-date-compact {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+        
+        .timeline-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        
+        .timeline-title-compact {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-subtitle-compact {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .timeline-description-compact {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -472,19 +546,21 @@
                 width: 45px;
                 height: 45px;
             }
+            
+            .timeline-items {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="scroll-progress"></div>
     
-    <!-- Dark Mode Toggle -->
     <button class="theme-toggle" aria-label="Toggle dark mode">
         <span class="theme-toggle-icon">🌙</span>
         <span style="font-size: 14px; font-weight: 600; color: var(--text-primary);">Dark</span>
     </button>
     
-    <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">↑</button>
     
     <nav>
@@ -512,10 +588,70 @@
                     developing efficient, dependable systems through clean, maintainable code.</p>
                 
                 <div class="skills">
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">Go Language</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Go</span>
                     <span class="skill-tag">Firmware Testing</span>
                     <span class="skill-tag">Server Configuration</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Embedded Systems</span>
+                </div>
+                
+                <div class="timeline-compact">
+                    <div class="timeline-header">
+                        <h3>Journey</h3>
+                    </div>
+                    
+                    <div class="timeline-items">
+                        <div class="timeline-item-compact">
+                            <span class="timeline-date-compact">May 2025 - Aug 2025</span>
+                            <h4 class="timeline-title-compact">
+                                <span class="timeline-icon">💼</span>
+                                Customer Qualification Engineering Intern
+                            </h4>
+                            <p class="timeline-subtitle-compact">KIOXIA America, Inc.</p>
+                            <p class="timeline-description-compact">
+                                Qualified SSDs for HPE storage solutions through functional and performance testing on server platforms.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item-compact">
+                            <span class="timeline-date-compact">Spring 2025</span>
+                            <h4 class="timeline-title-compact">
+                                <span class="timeline-icon">🚀</span>
+                                Coobak - Versioned Backup Tool
+                            </h4>
+                            <p class="timeline-subtitle-compact">Personal Project</p>
+                            <p class="timeline-description-compact">
+                                Built content-addressable storage system with deduplication and version tracking in Go.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item-compact">
+                            <span class="timeline-date-compact">2022 - May 2026</span>
+                            <h4 class="timeline-title-compact">
+                                <span class="timeline-icon">🎓</span>
+                                B.S. Computer Science & Engineering
+                            </h4>
+                            <p class="timeline-subtitle-compact">Santa Clara University</p>
+                            <p class="timeline-description-compact">
+                                Focus on Operating Systems, Embedded Systems, Computer Networks, and Data Structures.
+                            </p>
+                        </div>
+                        
+                        <div class="timeline-item-compact">
+                            <span class="timeline-date-compact">Feb 2023</span>
+                            <h4 class="timeline-title-compact">
+                                <span class="timeline-icon">🏆</span>
+                                Fund Facts - Hack for Humanity
+                            </h4>
+                            <p class="timeline-subtitle-compact">SCU Hackathon</p>
+                            <p class="timeline-description-compact">
+                                Led front-end development for charity classification system using React JS.
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -540,7 +676,7 @@
                     <div class="project-card">
                         <h3>Fund Facts</h3>
                         <p>A hackathon project that aimed to classify so-called "non-profits" into relevant categories and provide insights on their financial health.</p>
-                        <a href="https://devpost.com/software/charity-exposer?_gl=1*m32db1*_gcl_au*ODM0MDM3NzA4LjE3NjEwMjc4ODI.*_ga*NzM0ODAxNTc1LjE3NjEwMjc4ODI.*_ga_0YHJK3Y10M*czE3NjEwMjc4ODIkbzEkZzAkdDE3NjEwMjc4ODIkajYwJGwwJGgw" target="_blank" class="project-link">View on Devpost →</a>
+                        <a href="https://devpost.com/software/charity-exposer" target="_blank" class="project-link">View on Devpost →</a>
                     </div>
                 </div>
             </div>
@@ -553,7 +689,7 @@
                 <h2>Get In Touch</h2>
                 <p style="text-align: center; margin-bottom: 32px;">I'm always open to discussing new projects and opportunities.</p>
                 <div class="contact-links">
-                    <a href="mailto:your.email@example.com">Email</a>
+                    <a href="mailto:sergiodiazii@yahoo.com">Email</a>
                     <a href="https://github.com/sdiazii" target="_blank">GitHub</a>
                     <a href="https://linkedin.com/in/sdiazii" target="_blank">LinkedIn</a>
                 </div>
@@ -562,221 +698,99 @@
     </section>
 
     <script>
-        // Theme toggle functionality
         const themeToggle = document.querySelector('.theme-toggle');
         const themeIcon = document.querySelector('.theme-toggle-icon');
         const themeText = themeToggle.querySelector('span:last-child');
         const html = document.documentElement;
         
-        // Check for saved theme preference
         const savedTheme = localStorage.getItem('theme') || 'light';
         html.setAttribute('data-theme', savedTheme);
+        
+        function updateThemeUI(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            themeText.textContent = theme === 'dark' ? 'Light' : 'Dark';
+        }
+        
         updateThemeUI(savedTheme);
         
         themeToggle.addEventListener('click', () => {
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeUI(newTheme);
         });
         
-        function updateThemeUI(theme) {
-            if (theme === 'dark') {
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Light';
-            } else {
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'Dark';
-            }
-        }
-        
-        // Back to top button
         const backToTop = document.querySelector('.back-to-top');
-        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            backToTop.classList.toggle('visible', window.scrollY > 300);
         });
         
         backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
-        // 3D Tilt effect on project cards
         const projectCards = document.querySelectorAll('.project-card');
-        
         projectCards.forEach(card => {
-            let isHovering = false;
-            let currentX = 0;
-            let currentY = 0;
-            let targetX = 0;
-            let targetY = 0;
+            let isHovering = false, currentX = 0, currentY = 0, targetX = 0, targetY = 0;
             
-            card.addEventListener('mouseenter', () => {
-                isHovering = true;
-            });
-            
+            card.addEventListener('mouseenter', () => isHovering = true);
             card.addEventListener('mousemove', (e) => {
                 if (!isHovering) return;
-                
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Normalize to -1 to 1 range and clamp values
+                const x = e.clientX - rect.left, y = e.clientY - rect.top;
+                const centerX = rect.width / 2, centerY = rect.height / 2;
                 const normalizedX = Math.max(-1, Math.min(1, (x - centerX) / centerX));
                 const normalizedY = Math.max(-1, Math.min(1, (y - centerY) / centerY));
-                
-                // Reduced rotation intensity for smoother effect
                 targetX = normalizedY * 8;
                 targetY = -normalizedX * 8;
             });
+            card.addEventListener('mouseleave', () => { isHovering = false; targetX = 0; targetY = 0; });
             
-            card.addEventListener('mouseleave', () => {
-                isHovering = false;
-                targetX = 0;
-                targetY = 0;
-            });
-            
-            // Smooth animation loop using requestAnimationFrame
             function animateTilt() {
                 if (isHovering || Math.abs(currentX - targetX) > 0.1 || Math.abs(currentY - targetY) > 0.1) {
-                    // Ease towards target values
                     currentX += (targetX - currentX) * 0.15;
                     currentY += (targetY - currentY) * 0.15;
-                    
                     const elevation = isHovering ? -8 : 0;
                     const shadowIntensity = isHovering ? 0.3 : 0.1;
                     const shadowBlur = isHovering ? 50 : 12;
-                    
                     card.style.transform = `perspective(1000px) rotateX(${currentX}deg) rotateY(${currentY}deg) translateY(${elevation}px)`;
                     card.style.boxShadow = `0 ${Math.abs(elevation) + 4}px ${shadowBlur}px rgba(102, 126, 234, ${shadowIntensity})`;
                 }
-                
                 requestAnimationFrame(animateTilt);
             }
-            
             animateTilt();
         });
         
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                // Smooth page transition
+                const targetSection = document.querySelector(this.getAttribute('href'));
                 document.body.style.opacity = '0.7';
-                
                 setTimeout(() => {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    setTimeout(() => {
-                        document.body.style.opacity = '1';
-                    }, 300);
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => document.body.style.opacity = '1', 300);
                 }, 150);
             });
         });
         
-        // Scroll progress bar
         const scrollProgress = document.querySelector('.scroll-progress');
+        const nav = document.querySelector('nav');
+        
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = (scrollTop / scrollHeight);
-            scrollProgress.style.transform = `scaleX(${progress})`;
+            scrollProgress.style.transform = `scaleX(${scrollTop / scrollHeight})`;
+            nav.classList.toggle('scrolled', window.scrollY > 50);
         });
-        
-        // Nav background on scroll
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-        
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
         
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Smooth color transition on scroll
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            
-            // Interpolate between multiple color stops
-            const colors = [
-                { pos: 0, start: '#667eea', end: '#764ba2' },
-                { pos: 0.33, start: '#764ba2', end: '#8b5cf6' },
-                { pos: 0.66, start: '#8b5cf6', end: '#667eea' },
-                { pos: 1, start: '#667eea', end: '#764ba2' }
-            ];
-            
-            let currentColorSet = colors[0];
-            for (let i = 0; i < colors.length - 1; i++) {
-                if (scrollPercent >= colors[i].pos && scrollPercent < colors[i + 1].pos) {
-                    const localProgress = (scrollPercent - colors[i].pos) / (colors[i + 1].pos - colors[i].pos);
-                    currentColorSet = {
-                        start: interpolateColor(colors[i].start, colors[i + 1].start, localProgress),
-                        end: interpolateColor(colors[i].end, colors[i + 1].end, localProgress)
-                    };
-                    break;
-                }
-            }
-            
-            document.body.style.background = `linear-gradient(135deg, ${currentColorSet.start} 0%, ${currentColorSet.end} 100%)`;
-        });
-        
-        function interpolateColor(color1, color2, factor) {
-            const c1 = hexToRgb(color1);
-            const c2 = hexToRgb(color2);
-            const r = Math.round(c1.r + factor * (c2.r - c1.r));
-            const g = Math.round(c1.g + factor * (c2.g - c1.g));
-            const b = Math.round(c1.b + factor * (c2.b - c1.b));
-            return rgbToHex(r, g, b);
-        }
-        
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null;
-        }
-        
-        function rgbToHex(r, g, b) {
-            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-        }
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
