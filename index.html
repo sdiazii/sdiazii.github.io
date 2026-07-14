@@ -4,593 +4,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sergio Diaz - Portfolio</title>
+    <title>Sergio Diaz — Customer Qualification Engineer</title>
+    <meta name="description" content="Portfolio of Sergio Diaz, Customer Qualification Engineer at KIOXIA America, Inc. — storage systems, firmware testing, and embedded software.">
     <link rel="icon" type="image/jpeg" href="icon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ---------- Tokens ---------- */
         :root {
-            --bg-body: #fafafa;
-            --bg-card: #ffffff;
-            --bg-nav: rgba(250, 250, 250, 0.9);
-            --text-primary: #171717;
-            --text-secondary: #525252;
-            --accent-primary: #2563eb;
-            /* Modern Blue */
-            --accent-hover: #1d4ed8;
-            --border-color: #e5e5e5;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-full: 9999px;
-            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --canvas: #f2f4f6;
+            --surface: #ffffff;
+            --surface-2: #e8ecf0;
+            --ink: #11161c;
+            --ink-soft: #57626d;
+            --line: #dde2e7;
+            --amber: #b25e17;
+            --amber-tint: rgba(178, 94, 23, 0.10);
+            --teal: #0b7d6f;
+            --teal-tint: rgba(11, 125, 111, 0.12);
+            --grid-dot: rgba(17, 22, 28, 0.05);
+            --shadow: 0 1px 2px rgba(17, 22, 28, 0.05), 0 12px 28px -14px rgba(17, 22, 28, 0.16);
+            --radius-s: 6px;
+            --radius-m: 12px;
+            --radius-l: 20px;
+            --radius-full: 999px;
+            --font-display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
         }
 
         [data-theme="dark"] {
-            --bg-body: #0a0a0a;
-            --bg-card: #171717;
-            --bg-nav: rgba(10, 10, 10, 0.9);
-            --text-primary: #ededed;
-            --text-secondary: #a3a3a3;
-            --accent-primary: #3b82f6;
-            --accent-hover: #60a5fa;
-            --border-color: #262626;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --canvas: #0a0d11;
+            --surface: #12171d;
+            --surface-2: #1a2027;
+            --ink: #e8ecef;
+            --ink-soft: #8891a0;
+            --line: #232b33;
+            --amber: #eba456;
+            --amber-tint: rgba(235, 164, 86, 0.14);
+            --teal: #3ed9c6;
+            --teal-tint: rgba(62, 217, 198, 0.14);
+            --grid-dot: rgba(255, 255, 255, 0.045);
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 16px 36px -16px rgba(0, 0, 0, 0.6);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-body);
+            color: var(--ink);
+            background-color: var(--canvas);
             min-height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            transition: background-color .3s ease, color .3s ease;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(var(--grid-dot) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
         }
 
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        section { padding: 128px 0; scroll-margin-top: 84px; }
+
+        a { color: inherit; }
+
+        ::selection { background: var(--amber-tint); color: var(--ink); }
+
+        :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
+
+        /* ---------- Scroll progress ---------- */
         .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: var(--accent-primary);
-            z-index: 1001;
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform 0.1s ease;
+            position: fixed; top: 0; left: 0; height: 2px; width: 100%;
+            background: var(--amber); z-index: 1001; transform-origin: left;
+            transform: scaleX(0); transition: transform .1s ease;
         }
 
-        /* Navigation */
+        /* ---------- Nav ---------- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--bg-nav);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: color-mix(in srgb, var(--canvas) 88%, transparent);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid transparent;
-            padding: 1rem 2rem;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            transition: border-color .3s ease, background-color .3s ease;
         }
 
-        nav.scrolled {
-            border-color: var(--border-color);
+        nav.scrolled { border-color: var(--line); }
+
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 24px;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: flex-end;
-            /* Align to right for cleaner look */
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0;
+        .nav-brand {
+            font-family: var(--font-mono); font-weight: 600; font-size: 1rem;
+            text-decoration: none; color: var(--ink); letter-spacing: .02em;
         }
 
-        nav a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
+        .nav-brand span { color: var(--amber); }
+
+        .nav-links { list-style: none; display: flex; gap: 28px; }
+
+        .nav-links a {
+            text-decoration: none; color: var(--ink-soft); font-weight: 500;
+            font-size: .92rem; transition: color .2s ease; position: relative;
         }
 
-        nav a:hover,
-        nav a:focus {
-            color: var(--accent-primary);
+        .nav-links a:hover { color: var(--ink); }
+
+        .theme-toggle {
+            background: transparent; border: 1px solid var(--line); color: var(--ink);
+            border-radius: var(--radius-full); width: 38px; height: 38px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all .2s ease; font-size: .95rem; flex-shrink: 0;
         }
 
-        /* Layout */
-        .container {
-            max-width: 1000px;
-            /* Slightly tighter container for readability */
-            margin: 0 auto;
-            padding: 0 24px;
+        .theme-toggle:hover { border-color: var(--amber); background: var(--amber-tint); }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 26px; text-decoration: none; border-radius: var(--radius-full);
+            font-weight: 600; font-size: .92rem; transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
         }
 
-        section {
-            padding: 120px 0;
-        }
+        .btn-primary { background: var(--ink); color: var(--canvas); }
+        .btn-primary:hover { transform: translateY(-2px); opacity: .9; }
 
-        /* Hero Section */
+        .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+        .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+        .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        /* ---------- Hero ---------- */
         .hero {
-            min-height: 90vh;
-            /* Not full full screen, feels more modern */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-            /* Layout change: align left */
-            align-items: flex-start;
+            min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .kicker {
+            font-family: var(--font-mono); font-size: .85rem; color: var(--amber);
+            margin-bottom: 20px; letter-spacing: .01em;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            /* Big, bold */
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.05em;
-            color: var(--text-primary);
+            font-family: var(--font-display); font-size: clamp(2.75rem, 7vw, 5rem);
+            line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 22px;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            font-weight: 400;
+        .hero .lede {
+            font-size: 1.15rem; color: var(--ink-soft); max-width: 620px; margin-bottom: 40px;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 28px;
-            background-color: var(--text-primary);
-            /* High contrast */
-            color: var(--bg-body);
-            text-decoration: none;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: transform 0.2s, opacity 0.2s;
+        .spec-panel {
+            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m);
+            padding: 4px 22px; margin-bottom: 40px; max-width: 620px; box-shadow: var(--shadow);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
+        .spec-row {
+            display: flex; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line);
+            font-size: .92rem; align-items: baseline;
         }
 
-        /* Headings */
+        .spec-row:last-child { border-bottom: none; }
+
+        .spec-label {
+            font-family: var(--font-mono); color: var(--ink-soft); text-transform: uppercase;
+            font-size: .74rem; letter-spacing: .08em; width: 96px; flex-shrink: 0;
+        }
+
+        .spec-value { color: var(--ink); font-weight: 500; }
+
+        /* ---------- Section heads ---------- */
+        .eyebrow {
+            font-family: var(--font-mono); font-size: .85rem; color: var(--teal);
+            margin-bottom: 14px; letter-spacing: .01em;
+        }
+
         h2 {
-            font-size: 2.25rem;
-            margin-bottom: 40px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
+            font-family: var(--font-display); font-size: clamp(1.9rem, 3.5vw, 2.4rem);
+            margin-bottom: 24px; font-weight: 700; letter-spacing: -0.02em;
         }
 
-        /* Cards */
-        .content-section {
-            /* Removed the glass card look in favor of simple layout or clean cards if needed, 
-               but essentially keeping sections clean */
-            margin-bottom: 2rem;
-        }
+        .about-lede { color: var(--ink-soft); max-width: 640px; font-size: 1.02rem; margin-bottom: 36px; }
 
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            padding: 24px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .project-card h3 {
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .project-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--accent-primary);
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-decoration: none;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Skills */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 2rem;
-        }
+        /* ---------- Skills ---------- */
+        .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 76px; }
 
         .skill-tag {
-            background: transparent;
-            color: var(--text-secondary);
-            padding: 6px 16px;
-            border-radius: var(--radius-full);
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: border-color 0.2s, color 0.2s;
+            font-family: var(--font-mono); background: var(--surface); color: var(--ink-soft);
+            padding: 7px 16px; border-radius: var(--radius-full); font-size: .82rem;
+            border: 1px solid var(--line); transition: border-color .2s, color .2s;
         }
 
-        .skill-tag:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
+        .skill-tag:hover { border-color: var(--amber); color: var(--amber); }
+
+        /* ---------- Changelog / timeline ---------- */
+        .changelog-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 44px; }
+        .changelog-head h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
+        .changelog-head span { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-soft); }
+
+        .changelog-track {
+            border-left: 2px solid var(--line); padding-left: 30px;
+            display: flex; flex-direction: column; gap: 44px;
         }
 
-        /* Timeline */
-        .timeline-compact {
-            margin-top: 60px;
+        .entry { position: relative; }
+
+        .entry::before {
+            content: ''; position: absolute; left: -37px; top: 5px;
+            width: 10px; height: 10px; background: var(--canvas);
+            border: 2px solid var(--line); border-radius: 3px;
+            transition: border-color .25s ease, background-color .25s ease;
         }
 
-        .timeline-header {
-            margin-bottom: 32px;
+        .entry.current::before { border-color: var(--amber); background: var(--amber); }
+        .entry:hover::before { border-color: var(--teal); }
+
+        .entry-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+
+        .entry-version {
+            font-family: var(--font-mono); font-size: .78rem; color: var(--ink-soft);
+            letter-spacing: .03em; text-transform: uppercase;
         }
 
-        .timeline-header h3 {
-            font-size: 1.5rem;
-            color: var(--text-primary);
+        .entry.current .entry-version { color: var(--amber); }
+
+        .badge-current {
+            font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase;
+            letter-spacing: .05em; color: var(--amber); background: var(--amber-tint);
+            padding: 2px 9px; border-radius: var(--radius-full);
         }
 
-        .timeline-items {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            /* Connected line style? Or clean list? Let's go with clean list blocks */
-            border-left: 2px solid var(--border-color);
-            padding-left: 24px;
+        .entry h4 {
+            font-family: var(--font-display); font-size: 1.15rem; font-weight: 600;
+            display: flex; align-items: center; gap: 8px; margin-bottom: 3px;
         }
 
-        .timeline-item-compact {
-            position: relative;
-            padding-bottom: 40px;
+        .entry-org { font-size: .95rem; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+        .entry-desc { font-size: .95rem; color: var(--ink-soft); max-width: 580px; }
+
+        /* ---------- Projects ---------- */
+        .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+
+        .project-card {
+            background: var(--surface); padding: 26px; border-radius: var(--radius-l);
+            border: 1px solid var(--line); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
         }
 
-        .timeline-item-compact::before {
-            content: '';
-            position: absolute;
-            left: -31px;
-            /* Adjust based on padding/border */
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--bg-body);
-            border: 2px solid var(--border-color);
-            transition: border-color 0.2s;
+        .project-card:hover { transform: translateY(-3px); border-color: var(--amber); box-shadow: var(--shadow); }
+
+        .project-kicker {
+            display: inline-block; font-family: var(--font-mono); font-size: .68rem;
+            text-transform: uppercase; letter-spacing: .06em; color: var(--ink-soft);
+            background: var(--surface-2); padding: 4px 10px; border-radius: var(--radius-s);
+            margin-bottom: 14px;
         }
 
-        .timeline-item-compact:hover::before {
-            border-color: var(--accent-primary);
+        .project-card h3 { font-family: var(--font-display); margin-bottom: 10px; font-size: 1.2rem; font-weight: 600; }
+        .project-card p { font-size: .93rem; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.65; }
+
+        .project-link {
+            display: inline-flex; align-items: center; gap: 4px; color: var(--teal);
+            font-weight: 600; font-size: .88rem; text-decoration: none; font-family: var(--font-mono);
         }
 
-        .timeline-item-compact:last-child {
-            padding-bottom: 0;
+        .project-link:hover { text-decoration: underline; }
+
+        /* ---------- Contact ---------- */
+        .contact-lede { color: var(--ink-soft); max-width: 520px; margin-bottom: 36px; font-size: 1.02rem; }
+
+        .contact-links { display: flex; flex-direction: column; gap: 4px; max-width: 420px; }
+
+        .contact-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 4px; border-bottom: 1px solid var(--line);
+            text-decoration: none; color: var(--ink); transition: color .2s ease, padding-left .2s ease;
         }
 
-        .timeline-date-compact {
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            font-weight: 600;
+        .contact-row:hover { color: var(--amber); padding-left: 8px; }
+
+        .contact-row .label {
+            font-family: var(--font-mono); font-size: .74rem; text-transform: uppercase;
+            letter-spacing: .08em; color: var(--ink-soft);
         }
 
-        .timeline-title-compact {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .contact-row .value { font-weight: 600; font-size: 1.02rem; }
+        .contact-row .arrow { font-family: var(--font-mono); color: var(--ink-soft); transition: transform .2s ease; }
+        .contact-row:hover .arrow { transform: translateX(3px); color: var(--amber); }
 
-        .timeline-subtitle-compact {
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
+        /* ---------- Footer ---------- */
+        footer { padding: 40px 0 60px; border-top: 1px solid var(--line); }
+        footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        footer p { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-soft); }
 
-        .timeline-description-compact {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-        }
-
-        /* Contact Section */
-        .contact-links {
-            display: flex;
-            gap: 24px;
-            margin-top: 32px;
-        }
-
-        .contact-links a {
-            color: var(--text-secondary);
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-bottom: 1px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .contact-links a:hover {
-            color: var(--accent-primary);
-            border-bottom-color: var(--accent-primary);
-            transform: none;
-            /* Removed transform */
-        }
-
-        /* Theme Toggle & Back to Top */
-        .theme-toggle {
-            position: fixed;
-            top: 24px;
-            /* Aligned with nav */
-            left: 24px;
-            /* Moved to left or keep right? Let's put it in nav actually or keep fixed. */
-            z-index: 1001;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            border-radius: var(--radius-full);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .theme-toggle:hover {
-            background: var(--bg-card);
-            border-color: var(--text-primary);
-        }
-
+        /* ---------- Back to top ---------- */
         .back-to-top {
-            position: fixed;
-            bottom: 32px;
-            right: 32px;
-            width: 48px;
-            height: 48px;
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s;
-            z-index: 1000;
-            box-shadow: var(--shadow-md);
+            position: fixed; bottom: 32px; right: 32px; width: 46px; height: 46px;
+            background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all .3s ease; z-index: 999; box-shadow: var(--shadow);
         }
 
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { border-color: var(--amber); color: var(--amber); }
+
+        /* ---------- Fade-in on scroll ---------- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .back-to-top:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-        }
+        .fade-in { opacity: 0; }
+        .fade-in.visible { animation: fadeInUp .7s ease forwards; }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-            opacity: 0;
-            /* Start hidden for JS observer */
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-        }
-
-        /* Mobile specific */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            nav {
-                padding: 1rem;
-            }
-
-            nav ul {
-                justify-content: center;
-                gap: 16px;
-            }
-
-            .theme-toggle {
-                top: auto;
-                bottom: 32px;
-                left: 32px;
-                /* Move to bottom left on mobile maybe? Or keep top right */
-                top: 100px;
-                /* Below nav */
-                left: auto;
-                right: 24px;
-            }
-
-            .container {
-                padding: 0 20px;
-            }
-        }
-
-        /* Loading Screen */
+        /* ---------- Loading screen ---------- */
         #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background-color: var(--bg-body);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
+            position: fixed; inset: 0; z-index: 9999; background-color: var(--canvas);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 18px; transition: opacity .5s ease, visibility .5s;
         }
 
-        #loading-screen.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        #loading-logo {
-            display: none;
-        }
+        #loading-screen.fade-out { opacity: 0; visibility: hidden; }
 
         .loading-logo {
-            max-width: 600px;
-            height: auto;
-            width: 90%;
-            animation: pulse-subtle 2s infinite;
-            display: none;
+            max-width: 260px; width: 60%; height: auto; display: none;
         }
 
-        [data-theme="dark"] .logo-dark {
-            display: block;
+        [data-theme="dark"] .logo-dark { display: block; }
+        [data-theme="light"] .logo-light { display: block; }
+        html:not([data-theme]) .logo-light { display: block; }
+
+        .loading-bar { width: 160px; height: 2px; background: var(--line); border-radius: var(--radius-full); overflow: hidden; }
+        .loading-bar span {
+            display: block; height: 100%; width: 0%; background: var(--amber);
+            animation: loadBar .9s ease forwards;
         }
 
-        [data-theme="light"] .logo-light {
-            display: block;
+        @keyframes loadBar { to { width: 100%; } }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 640px) {
+            section { padding: 88px 0; }
+            .nav-links { gap: 16px; }
+            .nav-links li:first-child { display: none; }
+            .spec-row { flex-direction: column; gap: 3px; }
+            .spec-label { width: auto; }
+            .entry-desc, .hero .lede { max-width: 100%; }
         }
 
-        html:not([data-theme]) .logo-light {
-            display: block;
-        }
-
-        @keyframes pulse-subtle {
-            0% {
-                opacity: 0.8;
-                transform: scale(0.98);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            100% {
-                opacity: 0.8;
-                transform: scale(0.98);
+        /* ---------- Reduced motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
     <script>
-        // Prevent FOUC (Flash of Unstyled Content) by setting theme immediately
         (function () {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
+            var saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
         })();
     </script>
 </head>
 
 <body>
     <div id="loading-screen">
-        <img class="loading-logo logo-dark" src="assets/SGDII logoblack.png" alt="SGDII Logo">
-        <img class="loading-logo logo-light" src="assets/SGDII logowhite.png" alt="SGDII Logo">
+        <img class="loading-logo logo-dark" src="assets/SGDII logoblack.png" alt="SGDII logo">
+        <img class="loading-logo logo-light" src="assets/SGDII logowhite.png" alt="SGDII logo">
+        <div class="loading-bar"><span></span></div>
     </div>
 
     <div class="scroll-progress"></div>
 
-    <button class="theme-toggle" aria-label="Toggle dark mode">
-        <span class="theme-toggle-icon">🌙</span>
-    </button>
+    <nav>
+        <div class="nav-inner container">
+            <a href="#home" class="nav-brand">SD<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-toggle-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
 
     <button class="back-to-top" aria-label="Back to top">↑</button>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
     <section id="home" class="hero">
         <div class="container">
+            <p class="kicker">// customer qualification engineer</p>
             <h1>Sergio Diaz</h1>
-            <p>Customer Qualification Engineer @ KIOXIA America, Inc.</p>
-            <a href="#projects" class="btn">View My Work</a>
+            <p class="lede">Testing and qualifying datacenter SSDs at KIOXIA America — from firmware validation to full server-platform reliability.</p>
+
+            <div class="spec-panel">
+                <div class="spec-row">
+                    <span class="spec-label">Role</span>
+                    <span class="spec-value">Customer Qualification Engineer · KIOXIA America, Inc.</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Focus</span>
+                    <span class="spec-value">Storage systems · Firmware testing · Reliability engineering</span>
+                </div>
+                <div class="spec-row">
+                    <span class="spec-label">Education</span>
+                    <span class="spec-value">B.S. Computer Science &amp; Engineering · Santa Clara University</span>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <a href="#projects" class="btn btn-primary">View my work →</a>
+                <a href="#contact" class="btn btn-ghost">Get in touch</a>
+            </div>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <div class="content-section fade-in">
-                <h2>About Me</h2>
-                <p>Passionate about software, firmware, and reliability engineering. Experienced in testing and
-                    automation for storage solutions and
-                    developing efficient, dependable systems through clean, maintainable code.</p>
+            <div class="fade-in">
+                <p class="eyebrow">// about</p>
+                <h2>About me</h2>
+                <p class="about-lede">Passionate about software, firmware, and reliability engineering. Experienced in testing and automation for storage solutions and developing efficient, dependable systems through clean, maintainable code.</p>
 
                 <div class="skills">
                     <span class="skill-tag">C/C++</span>
@@ -602,61 +453,47 @@
                     <span class="skill-tag">Embedded Systems</span>
                 </div>
 
-                <div class="timeline-compact">
-                    <div class="timeline-header">
-                        <h3>Journey</h3>
+                <div class="changelog-head">
+                    <h3>Journey</h3>
+                    <span>// release history, newest first</span>
+                </div>
+
+                <div class="changelog-track">
+                    <div class="entry current">
+                        <div class="entry-meta">
+                            <span class="entry-version">rel 2026.06 → present</span>
+                            <span class="badge-current">current</span>
+                        </div>
+                        <h4>⚙️ Customer Qualification Engineer</h4>
+                        <p class="entry-org">KIOXIA America, Inc.</p>
+                        <p class="entry-desc">Provide support for customer qualifications on datacenter SSD products on behalf of engineering and development teams.</p>
                     </div>
 
-                    <div class="timeline-item-compact">
-                        <span class="timeline-date-compact">June 2026 - Present</span>
-                        <h4 class="timeline-title-compact">
-                            <span class="timeline-icon">⚙️</span>
-                            Customer Qualification Engineer
-                        </h4>
-                        <p class="timeline-subtitle-compact">KIOXIA America, Inc.</p>
-                        <p class="timeline-description-compact">
-                            Provide support for customer qualifications on datacenter SSD products on behalf of engineering and development teams.
-                        </p>
+                    <div class="entry">
+                        <div class="entry-meta">
+                            <span class="entry-version">rel 2025.05 → 2025.08</span>
+                        </div>
+                        <h4>💼 Customer Qualification Engineering Intern</h4>
+                        <p class="entry-org">KIOXIA America, Inc.</p>
+                        <p class="entry-desc">Qualified SSDs for HPE storage solutions through functional and performance testing on server platforms.</p>
                     </div>
 
-                    <div class="timeline-items">
-                        <div class="timeline-item-compact">
-                            <span class="timeline-date-compact">May 2025 - Aug 2025</span>
-                            <h4 class="timeline-title-compact">
-                                <span class="timeline-icon">💼</span>
-                                Customer Qualification Engineering Intern
-                            </h4>
-                            <p class="timeline-subtitle-compact">KIOXIA America, Inc.</p>
-                            <p class="timeline-description-compact">
-                                Qualified SSDs for HPE storage solutions through functional and performance testing on
-                                server platforms.
-                            </p>
+                    <div class="entry">
+                        <div class="entry-meta">
+                            <span class="entry-version">rel 2022 → 2026.05</span>
                         </div>
+                        <h4>🎓 B.S. Computer Science &amp; Engineering</h4>
+                        <p class="entry-org">Santa Clara University</p>
+                        <p class="entry-desc">Focus on Operating Systems, Embedded Systems, Computer Networks, and Data Structures.</p>
+                    </div>
 
-                        <div class="timeline-item-compact">
-                            <span class="timeline-date-compact">2022 - May 2026</span>
-                            <h4 class="timeline-title-compact">
-                                <span class="timeline-icon">🎓</span>
-                                B.S. Computer Science & Engineering
-                            </h4>
-                            <p class="timeline-subtitle-compact">Santa Clara University</p>
-                            <p class="timeline-description-compact">
-                                Focus on Operating Systems, Embedded Systems, Computer Networks, and Data Structures.
-                            </p>
+                    <div class="entry">
+                        <div class="entry-meta">
+                            <span class="entry-version">rel 2023.02</span>
                         </div>
-
-                        <div class="timeline-item-compact">
-                            <span class="timeline-date-compact">Feb 2023</span>
-                            <h4 class="timeline-title-compact">
-                                <span class="timeline-icon">🏆</span>
-                                Fund Facts - Hack for Humanity
-                            </h4>
-                            <p class="timeline-subtitle-compact">SCU Hackathon</p>
-                            <p class="timeline-description-compact">
-                                Led front-end development for charity classification system using React JS.
-                            </p>
-                        </div>
-
+                        <h4>🏆 Fund Facts — Hack for Humanity</h4>
+                        <p class="entry-org">SCU Hackathon</p>
+                        <p class="entry-desc">Led front-end development for charity classification system using React JS.</p>
                     </div>
                 </div>
             </div>
@@ -665,31 +502,27 @@
 
     <section id="projects">
         <div class="container">
-            <div class="content-section fade-in">
-                <h2>My Projects</h2>
+            <div class="fade-in">
+                <p class="eyebrow">// projects</p>
+                <h2>My projects</h2>
                 <div class="projects">
                     <div class="project-card">
+                        <span class="project-kicker">Storage tool</span>
                         <h3>Coobak</h3>
-                        <p>coobak is a lightweight, versioned backup tool inspired by Venti and Elephant File System.
-                            It splits files into deduplicated, content-addressable chunks and stores them locally along
-                            with a manifest of historical versions — making it easy to restore any previous state of
-                            your files.</p>
-                        <a href="https://github.com/sdiazii/coobak" target="_blank" class="project-link">View on GitHub
-                            →</a>
+                        <p>coobak is a lightweight, versioned backup tool inspired by Venti and Elephant File System. It splits files into deduplicated, content-addressable chunks and stores them locally along with a manifest of historical versions — making it easy to restore any previous state of your files.</p>
+                        <a href="https://github.com/sdiazii/coobak" target="_blank" rel="noopener" class="project-link">→ view on GitHub</a>
                     </div>
                     <div class="project-card">
+                        <span class="project-kicker">Computer vision · in development</span>
                         <h3>VidAT</h3>
-                        <p>VidAT is an in development image recognition system that uses a combination of computer
-                            vision and machine learning to identify and classify injuries in live camera feed.</p>
-                        <a href="https://github.com/sdiazii/VidAT" target="_blank" class="project-link">View on GitHub
-                            →</a>
+                        <p>VidAT is an in development image recognition system that uses a combination of computer vision and machine learning to identify and classify injuries in live camera feed.</p>
+                        <a href="https://github.com/sdiazii/VidAT" target="_blank" rel="noopener" class="project-link">→ view on GitHub</a>
                     </div>
                     <div class="project-card">
+                        <span class="project-kicker">Hackathon · Feb 2023</span>
                         <h3>Fund Facts</h3>
-                        <p>A hackathon project that aimed to classify so-called "non-profits" into relevant categories
-                            and provide insights on their financial health.</p>
-                        <a href="https://devpost.com/software/charity-exposer" target="_blank" class="project-link">View
-                            on Devpost →</a>
+                        <p>A hackathon project that aimed to classify so-called "non-profits" into relevant categories and provide insights on their financial health.</p>
+                        <a href="https://devpost.com/software/charity-exposer" target="_blank" rel="noopener" class="project-link">→ view on Devpost</a>
                     </div>
                 </div>
             </div>
@@ -698,88 +531,87 @@
 
     <section id="contact">
         <div class="container">
-            <div class="content-section fade-in">
-                <h2>Get In Touch</h2>
-                <p style="text-align: center; margin-bottom: 32px;">I'm always open to discussing new projects and
-                    opportunities.</p>
+            <div class="fade-in">
+                <p class="eyebrow">// contact</p>
+                <h2>Get in touch</h2>
+                <p class="contact-lede">I'm always open to discussing new projects and opportunities.</p>
                 <div class="contact-links">
-                    <a href="mailto:sergiodiazii@yahoo.com">Email</a>
-                    <a href="https://github.com/sdiazii" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/sdiazii" target="_blank">LinkedIn</a>
+                    <a href="mailto:sergiodiazii@yahoo.com" class="contact-row">
+                        <span><span class="label">Email</span><br><span class="value">sergiodiazii@yahoo.com</span></span>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="https://github.com/sdiazii" target="_blank" rel="noopener" class="contact-row">
+                        <span><span class="label">GitHub</span><br><span class="value">github.com/sdiazii</span></span>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="https://linkedin.com/in/sdiazii" target="_blank" rel="noopener" class="contact-row">
+                        <span><span class="label">LinkedIn</span><br><span class="value">linkedin.com/in/sdiazii</span></span>
+                        <span class="arrow">→</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer>
+        <div class="container">
+            <p>© 2026 Sergio Diaz</p>
+            <p>Built with care, from the firmware up.</p>
+        </div>
+    </footer>
+
     <script>
-        // Loading Screen Logic
+        // Loading screen
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.addEventListener('load', () => {
             setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                loadingScreen.classList.add('fade-out');
-                // Allow scrolling again if it was disabled (optional, currently it just covers)
-            }, 1000); // 1 seconds delay after load
+                document.getElementById('loading-screen').classList.add('fade-out');
+            }, reduceMotion ? 0 : 800);
         });
 
+        // Theme toggle
         const themeToggle = document.querySelector('.theme-toggle');
         const themeIcon = document.querySelector('.theme-toggle-icon');
         const html = document.documentElement;
 
-        // Theme is already set in head script, just update UI
-        const currentTheme = html.getAttribute('data-theme');
         function updateThemeUI(theme) {
             themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
-
-        updateThemeUI(currentTheme);
+        updateThemeUI(html.getAttribute('data-theme'));
 
         themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeUI(newTheme);
+            const current = html.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeUI(next);
         });
 
+        // Back to top
         const backToTop = document.querySelector('.back-to-top');
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('visible', window.scrollY > 300);
         });
-
         backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
 
-
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetSection = document.querySelector(this.getAttribute('href'));
-                document.body.style.opacity = '0.7';
-                setTimeout(() => {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                    setTimeout(() => document.body.style.opacity = '1', 300);
-                }, 150);
-            });
-        });
-
+        // Nav scroll state + progress bar
         const scrollProgress = document.querySelector('.scroll-progress');
         const nav = document.querySelector('nav');
-
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            scrollProgress.style.transform = `scaleX(${scrollTop / scrollHeight})`;
-            nav.classList.toggle('scrolled', window.scrollY > 50);
+            scrollProgress.style.transform = `scaleX(${scrollHeight ? scrollTop / scrollHeight : 0})`;
+            nav.classList.toggle('scrolled', window.scrollY > 40);
         });
 
+        // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
-
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
